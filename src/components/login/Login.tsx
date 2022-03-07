@@ -1,5 +1,5 @@
 import '../../styles/global.scss';
-import '../../styles/login.scss';
+import './login.scss';
 import googleIconImg from '../../assets/images/google-icon.svg';
 import logo from '../../assets/images/junior_soccer.svg';
 import soccerField from '../../assets/images/soccer-field.gif';

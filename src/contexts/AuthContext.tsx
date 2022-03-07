@@ -26,10 +26,12 @@ export function AuthContextProvider(props: AuthContextProviderProps)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
+      if (user)
+      {
         const { displayName, photoURL, uid } = user
 
-        if (!displayName || !photoURL) {
+        if (!displayName || !photoURL)
+        {
           throw new Error('Missing information from Google Account.');
         }
 
@@ -38,7 +40,8 @@ export function AuthContextProvider(props: AuthContextProviderProps)
           name: displayName,
           avatar: photoURL
         })
-      } else {
+      } else
+      {
         navigate('/login');
       }
     })
@@ -57,7 +60,8 @@ export function AuthContextProvider(props: AuthContextProviderProps)
     if (result.user) {
       const { displayName, photoURL, uid } = result.user
 
-      if (!displayName || !photoURL) {
+      if (!displayName || !photoURL)
+      {
         throw new Error('Missing information from Google Account.');
       }
 

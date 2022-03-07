@@ -1,0 +1,44 @@
+
+div {
+
+    // position: fixed;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+
+    .icon-wrapper {
+        width: fit-content;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff3d;
+        transition: .2s ease-in-out;
+        padding-inline: 24px;
+        margin: 0 auto;
+
+        &:hover {
+
+            background-color: #ffffff2c;
+            backdrop-filter: blur(12px);
+
+        }
+
+        img {
+
+            height: 50px;
+            transition: .2s ease-in-out;
+            opacity: .6;
+
+            &:hover {
+
+                height: 100px;
+                transform: translateY(-20px);
+                cursor: pointer;
+                opacity: 1;
+            }
+        }
+    }
+
+}

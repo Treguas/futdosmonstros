@@ -1,0 +1,38 @@
+.page-header {
+  top: 0;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  padding: 0.4rem 2rem;
+  align-items: center;
+
+  .top-bar-container {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+
+    a {
+      height: 3.2rem;
+      transition: opacity 0.2s;
+    }
+
+    a:hover {
+      opacity: 0.6;
+    }
+
+    >img {
+      height: 2rem;
+    }
+  }
+
+  strong {
+    font: 700 2.4rem 'Titillium Web', sans-serif;
+    line-height: 0.1rem;
+    color: #000;
+    margin:0.2rem;
+  }
+
+}
