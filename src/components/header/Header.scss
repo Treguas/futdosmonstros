@@ -1,6 +1,6 @@
 .page-header {
   top: 0;
-  background-color: red;
+  background-color: var(--green-secondary);
   display: flex;
   flex-direction: column;
   padding: 0.4rem 2rem;
@@ -12,7 +12,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.4rem 0;
 
     a {
       height: 3.2rem;
@@ -29,9 +28,9 @@
   }
 
   strong {
-    font: 700 2.4rem 'Titillium Web', sans-serif;
+    font: 700 1.4rem 'Titillium Web', sans-serif;
     line-height: 0.1rem;
-    color: #000;
+    color: var(--light-green);
     margin:0.2rem;
   }
 

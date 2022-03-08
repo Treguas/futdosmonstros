@@ -16,19 +16,27 @@ export const Header = () => {
     const activePath = () => {
         if (currentPath == "List") 
         {
-            setCurrentPath('Lista de Jogadores')
+            setCurrentPath("Lista de Jogadores");
         }
         else if (currentPath == "")
         {
-            setCurrentPath('Home')
+            setCurrentPath("Home");
         }
+        else if (currentPath == "Photos")
+        {
+            setCurrentPath("Galeria de Imagens");
+        }
+    }
+
+    const hideArrow = () => {
+    
     }
 
     return (
         <header className="page-header">
             <div className="top-bar-container">
-                <Link to="/"><a><img src={Back} alt="Voltar" />
-                </a></Link>
+                <Link to="/">{currentPath !="" ? <img src={Back} alt="Voltar" title='Voltar para Home'/>: null}
+                </Link>
                 <img src={Back} alt="Logo" />
             </div>
 
