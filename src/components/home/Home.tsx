@@ -4,6 +4,9 @@ import { Header } from "../header/Header";
 import { Menu } from "../menu/Menu";
 import "./Home.scss";
 import { FcInspection } from "react-icons/fc";
+import { createContext } from "react";
+
+const headerContext = createContext('')
 
 export const Home = () =>
 {
@@ -13,7 +16,9 @@ export const Home = () =>
     return (
         <div className="header">
             <div>
-                <Header />
+                <headerContext.Provider value={'Treguas'}>
+                    <Header />
+                </headerContext.Provider>
             </div>
 
             

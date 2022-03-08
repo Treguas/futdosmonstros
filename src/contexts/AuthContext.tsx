@@ -17,6 +17,8 @@ type AuthContextProviderProps = {
   children: ReactNode;
 }
 
+
+
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider(props: AuthContextProviderProps)
@@ -49,7 +51,8 @@ export function AuthContextProvider(props: AuthContextProviderProps)
     return () => {
       unsubscribe();
     }
-  }, [])
+  }, []);
+
 
   async function signInWithGoogle()
   {
@@ -73,9 +76,10 @@ export function AuthContextProvider(props: AuthContextProviderProps)
     }
     navigate('/');
   }
+
   
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle }}>
+    <AuthContext.Provider value={{user, signInWithGoogle }}>
       {props.children}
     </AuthContext.Provider>
   );
