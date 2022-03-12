@@ -18,6 +18,14 @@
   scrollbar-width: none; /* Firefox */
 }
 
+.containerFeed {
+  word-break: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-wrap: break-word
+}
+
 .feed__header {
   position: sticky;
   top: 0;

@@ -19,7 +19,7 @@ export const Home = () => {
             <div>
                 <Header />
             </div>
-                <div style={{background: '#fff', display:'Flex', justifyContent:'center', margin: 'auto', width: '800px'}}>
+                <div className="containerFeed">
                     <FlipMove>
                         <Feed />
                     </FlipMove>

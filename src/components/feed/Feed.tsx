@@ -25,7 +25,7 @@ function Feed () {
           <HeaderBox />
 
         </div>
-        <div style={{display: "flex", alignItems: "center", justifyContent: "center", wordBreak: "normal", overflowWrap: 'break-word'}}>
+        <div className="containerFeed">
           <FlipMove>
               <p style={teste}>teste Foguete não tem ré 🚀 dddddddddddddddddddddde postagdddddddddddssddddddddddddddddddddddddddddssssssssssssssssssssssssssssssssssssssssssssssssssssssddddddddddem</p>
               <p style={teste}>teste Foguete não tem ré 🚀 dddddddddddddddddddddde postagdddddddddddssddddddddddddddddddddddddddddssssssssssssssssssssssssssssssssssssssssssssssssssssssddddddddddem</p>
