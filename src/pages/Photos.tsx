@@ -28,7 +28,7 @@ const breakpointColumnsObj = {
 export const Photos = () => {
 
     return (
-        <div>
+        <>
         <Header />
         <Masonry
             breakpointCols={breakpointColumnsObj}
@@ -40,6 +40,6 @@ export const Photos = () => {
                        </div>
             })}
         </Masonry>
-            </div>
+            </>
     )
 }

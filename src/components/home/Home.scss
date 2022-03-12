@@ -1,11 +1,14 @@
 .header {
 
+  display: flex;
+  flex-direction: column;
 
-    .mainMenu {
-        width: 100%;
-        position: fixed;
-        height: 10%;
-        bottom: 0;
-    }
+
+  .mainMenu {
+    width: 100%;
+    position: fixed;
+    height: 10%;
+    bottom: 0;
+  }
 
 }

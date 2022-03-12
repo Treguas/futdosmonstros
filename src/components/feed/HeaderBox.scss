@@ -1,0 +1,44 @@
+.headerBox {
+  padding-bottom: 10px;
+  border-bottom: 8px solid #fff;
+  padding-right: 10px;
+}
+
+.headerBox > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerBox__input {
+  padding: 20px;
+  display: flex;
+  > img {
+    width: 4rem;
+    border-radius: 50%;
+  }
+}
+
+.headerBox__input > input {
+  flex: 1;
+  margin-left: 20px;
+  font-size: 20px;
+  border: none;
+}
+
+.headerBox__imageInput {
+  border: none;
+  padding: 10px;
+}
+
+.headerBox__TextButton {
+  background-color: #4fff4b !important;
+  border: none !important;
+  color: rgb(0, 0, 0) !important;
+  font-weight: 900 !important;
+  text-transform: inherit !important;
+  border-radius: 10px !important;
+  width: 100px;
+  height: 40px !important;
+  margin-top: 20px !important;
+  margin-left: auto !important;
+}

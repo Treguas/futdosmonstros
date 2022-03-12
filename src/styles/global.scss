@@ -17,7 +17,7 @@
   --gray-900: #212529;
 
 
-
+  --tw-color: #50b7f5;
   --body-background: #0e0e0e;
   --color-logo: #ff5b50;
   --card-color: #252525;
@@ -45,5 +45,12 @@
   }
   
   body, input, button, textarea {
-    font: 400 16px 'Titillium Web', sans-serif;
+    // font: 400 16px 'Titillium Web', sans-serif;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, Arial, sans-serif;
+  }
+
+  *, button, input, textarea {
+    border: 0;
+    background: none;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, Arial, sans-serif;
   }
