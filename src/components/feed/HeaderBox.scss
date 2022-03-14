@@ -1,7 +1,7 @@
 .headerBox {
   padding-bottom: 10px;
-  border-bottom: 8px solid #fff;
   padding-right: 10px;
+  width: 700px;
 }
 
 .headerBox > form {
@@ -9,20 +9,31 @@
   flex-direction: column;
 }
 
-.headerBox__input {
+.headerBox__input  {
   padding: 20px;
   display: flex;
   > img {
-    width: 4rem;
+    width: 6.4rem;
     border-radius: 50%;
+    border: 3px solid #4fff4b;
   }
-}
-
-.headerBox__input > input {
+  > textarea {
+  padding: 0.4rem;
+  background: var(--gray-100);
+  border-radius: 0.4rem;
   flex: 1;
   margin-left: 20px;
   font-size: 20px;
   border: none;
+  box-sizing: border-box;
+  word-break: normal;
+  overflow-wrap: break-word;
+  resize: none;
+  overflow-y: hidden;
+}
+>textarea:focus-visible {
+  outline: 0;
+}
 }
 
 .headerBox__imageInput {
@@ -31,14 +42,24 @@
 }
 
 .headerBox__TextButton {
-  background-color: #4fff4b !important;
-  border: none !important;
-  color: rgb(0, 0, 0) !important;
-  font-weight: 900 !important;
-  text-transform: inherit !important;
-  border-radius: 10px !important;
+  background-color: var(--success);
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  font-family: 'Ubuntu', sans-serif;
+  text-transform: inherit;
+  border-radius: 8px;
   width: 100px;
-  height: 40px !important;
-  margin-top: 20px !important;
-  margin-left: auto !important;
+  height: 50px;
+  margin: 20px 20px auto auto;
+  cursor: pointer;
+  transition: filter 0.2s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:not(:disabled):hover {
+    filter: brightness(0.9);
+  }
 }
