@@ -10,9 +10,6 @@ export const Menu = () => {
     return (
         <div>
             <section className="icon-wrapper">
-                <Link to="/">
-                    <img src={Home} title="Home" />
-                </Link>
                 <Link to="/List">
                     <img src={Inspection} title="Lista" />
                 </Link>

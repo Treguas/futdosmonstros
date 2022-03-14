@@ -25,9 +25,9 @@ export const Home = () => {
                     </FlipMove>
                 </div>
 
-            <div className="mainMenu">
+            {/* <div className="mainMenu">
                 <Menu />
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -3,6 +3,7 @@ import "./HeaderBox.scss";
 import { firestore } from '../../services/firebase';
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { Menu } from "../menu/Menu";
 
 
 export const HeaderBox = () => {
@@ -28,6 +29,8 @@ export const HeaderBox = () => {
 
   return (
     <div className="headerBox">
+      <div style={{marginTop: '44px'}}>
+      <Menu /></div>
       <form>
         <div className="headerBox__input">
           <img src={`${user?.avatar}`} />
