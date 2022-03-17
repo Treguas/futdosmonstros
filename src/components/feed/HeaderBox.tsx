@@ -34,7 +34,7 @@ export const HeaderBox = () => {
           <textarea
             onChange={(e) => setTextMessage(e.target.value)}
             value={TextMessage}
-            placeholder="What's happening?"
+            placeholder="Qual a boa?"
             
           />
         </div>
