@@ -50,32 +50,34 @@ function Feed() {
   }
 
   return (
-    <div>
-      <div className="feed">
-        <HeaderBox />
-      </div>
-      <div className="containerFeed">
+    <div className="bio-container">
+      <div className="bio">
+          {/* <Feed /> */}
+          <h3>
+              <HeaderBox />
+          </h3>
+          <div>
+
         <FlipMove>
-          {posts.map((post: post) => {
-            return <div style={{ width: '100%' }}>
-              <div style={{ display: 'flex', alignItems: 'center', marginTop: '13px' }}>
-                <img style={{ borderRadius: '50%', width: '40px' }} src={post.avatar} />
-                <span style={{ color: 'orange', paddingLeft: '13px' }}>{post.displayName}</span>
+            {posts.map((post: post) => {
+              return <div>
+                <div className="display">
+                  <img className="avatar" src={post.avatar}></img>
+                  <p className="displayName"><strong>{post.displayName}</strong></p>
+                </div>
+                <p className="textMessage">{post.text}</p>
+                {user?.id == post.userID ? <button className="btnDelete" onClick={()=> {deletePost(post.id)}}>Delete</button> : null}
               </div>
-              <p style={teste}>{post.text}</p>
-              {user?.id == post.userID ? <button onClick={()=> {deletePost(post.id)}}>Delete</button> : null}
-            </div>
-          })
-
-          }
-        </FlipMove>
+            })
+            }
+           
+         </FlipMove>
 
 
-
-
-
+          </div>
       </div>
-    </div>
+  </div>
+
   );
 }
 

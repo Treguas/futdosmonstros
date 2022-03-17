@@ -1,28 +1,22 @@
-import "./Menu.scss";
-import Inspection from "../../assets/icons/inspection.svg";
-import Home from "../../assets/icons/home.svg";
-import Rule from "../../assets/icons/rule.svg";
-import Photos from "../../assets/icons/photos.svg";
-import Config from "../../assets/icons/config.svg";
+import './Menu.scss';
+import '../../styles/layout.scss';
+import { useContext, useEffect, useState } from 'react';
+import Back from '../../assets/icons/back.svg';
 import { Link } from 'react-router-dom';
+import { AuthContext } from "../../contexts/AuthContext";
 
 export const Menu = () => {
+    const currentPath = window.location.pathname.split("/")[1];
+    const [path, setCurrentPath] = useState<string>();
+
+    useEffect(() => {
+    }, []);
+
+
+ 
+
     return (
-        <div>
-            <section className="icon-wrapper">
-                <Link to="/List">
-                    <img src={Inspection} title="Lista" />
-                </Link>
-                <Link to="/Photos">
-                    <img src={Photos} title="Fotos" />
-                </Link>
-                <Link to="/Rule">
-                    <img src={Rule} title="regras" />
-                </Link>
-                <Link to="/Config">
-                    <img src={Config} title="Configurações" />
-                </Link>
-            </section>
-        </div>
+
+       <></>
     )
 }

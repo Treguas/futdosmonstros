@@ -40,8 +40,13 @@
   }
   
   body {
-    background: #f8f9fa;
-    color: #29292e;
+    font-family: "Inter", sans-serif;
+    background: #f5f7fa;;
+    color: #000;
+    line-height: 1.5;
+    max-width: 1400px;
+    margin: 0 auto;
+    letter-spacing: -0.03rem;
   }
   
   body, input, button, textarea {

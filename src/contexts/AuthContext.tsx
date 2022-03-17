@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, firebase } from "../services/firebase";
 
+
 type User = {
   id: string;
   name: string;
@@ -11,6 +12,7 @@ type User = {
 type AuthContextType = {
   user: User | undefined;
   signInWithGoogle: () => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 type AuthContextProviderProps = {
@@ -77,9 +79,19 @@ export function AuthContextProvider(props: AuthContextProviderProps)
     navigate('/');
   }
 
+ 
+  async function logout()
+   {
+    try {
+        await auth.signOut();
+    } catch(error) {
+        console.log('Error ->', error);
+    }
+}
+
   
   return (
-    <AuthContext.Provider value={{user, signInWithGoogle }}>
+    <AuthContext.Provider value={{user, signInWithGoogle, logout }}>
       {props.children}
     </AuthContext.Provider>
   );

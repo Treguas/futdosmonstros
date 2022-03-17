@@ -1,22 +1,19 @@
-.header {
-
-  display: flex;
-  flex-direction: column;
-
-
-  .mainMenu {
-    width: 100%;
-    position: fixed;
-    height: 10%;
-    bottom: 0;
-  }
-
+.imgUserLogger {
+    border-radius: 50%;
 }
 
-.containerFeed {
-  background: #f8f9fa;
-  display: Flex;
-  justify-content: center;
-  margin: auto;
-  width: 800px
+.buttons {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span 
+    {
+        margin-left: 0.6rem ;
+        width: 1.6rem;
+        cursor: pointer;
+    }
+
+
 }
