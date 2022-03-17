@@ -1,10 +1,9 @@
-import React, { HTMLAttributes, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Menu } from "../menu/Menu";
 import "./Home.scss";
 import '../../styles/layout.scss';
 import { createContext } from "react";
-import FlipMove from "react-flip-move";
 import Feed from "../feed/Feed";
 import '../../styles/layout.scss';
 import { List } from "../../pages/List";
@@ -55,7 +54,7 @@ return (
                             Feed
                         </a>
                         <a className="nav-link" onClick={(e)=>{hideComponent(e)}}>
-                            List
+                            Lista de Presença
                         </a>
                     </div>
                 </div>
@@ -101,7 +100,7 @@ return (
                     </div>
                     :null
                 }
-                { elementClickText == 'List'?
+                { elementClickText == 'Lista de Presença'?
                     <div className="feed">
                         <List />
                     </div>
