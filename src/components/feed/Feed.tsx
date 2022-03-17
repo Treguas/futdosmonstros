@@ -60,13 +60,13 @@ function Feed() {
 
         <FlipMove>
             {posts.map((post: post) => {
-              return <div>
-                <div className="display">
-                  <img className="avatar" src={post.avatar}></img>
-                  <p className="displayName"><strong>{post.displayName}</strong></p>
-                </div>
-                <p className="textMessage">{post.text}</p>
-                {user?.id == post.userID ? <button className="btnDelete" onClick={()=> {deletePost(post.id)}}>Delete</button> : null}
+              return <div className="containerChat">
+                  <div className="display">
+                    <img className="avatar" src={post.avatar}></img>
+                    <p className="displayName"><strong>{post.displayName}</strong></p>
+                  </div>
+                  <p className="textMessage">{post.text}</p>
+                  {user?.id == post.userID ? <button className="btnDelete" onClick={()=> {deletePost(post.id)}}>Delete</button> : null}
               </div>
             })
             }

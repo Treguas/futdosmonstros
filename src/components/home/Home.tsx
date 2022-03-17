@@ -8,7 +8,7 @@ import FlipMove from "react-flip-move";
 import Feed from "../feed/Feed";
 import '../../styles/layout.scss';
 import { List } from "../../pages/List";
-import { GiExitDoor } from "react-icons/gi";
+import { GiCyborgFace, GiExitDoor, GiSwitchWeapon } from "react-icons/gi";
 
 
 
@@ -61,12 +61,12 @@ return (
                 </div>
 
                 <div className="flex-end">
-                    <a href="#" className="header-icons">
-                        <img src="" alt="Theme switch"/>
+                    <a className="header-icons themeSwitch">
+                    <GiSwitchWeapon size={25} />
                     </a>
 
-                    <a className="header-icons">
-                        <img src="" alt="User profile" />
+                    <a className="header-icons" title="Profile">
+                        <GiCyborgFace size={40}/>
                     </a>
                 </div>
             </nav>
