@@ -1,4 +1,5 @@
-.headerBox {
+.headerBox
+{
   padding-bottom: 10px;
   padding-right: 10px;
   width: 100%;
@@ -9,7 +10,8 @@
   flex-direction: column;
 }
 
-.headerBox__input  {
+.headerBox__input
+{
   padding: 20px;
   display: flex;
   > img {
@@ -36,7 +38,8 @@
 }
 }
 
-.headerBox__imageInput {
+.headerBox__imageInput
+{
   border: none;
   padding: 10px;
 }

@@ -27,18 +27,7 @@ function Feed() {
     image: string,
     text: string
     username: string,
-    verified: boolean
-  }
-
-
-
-
-
-
-  const teste = {
-    background: '#fff',
-    maxWidth: '800px',
-    padding: '24px',
+    verified: boolean,
   }
 
   // function updateDataArtista(id, data: any) {
@@ -50,7 +39,7 @@ function Feed() {
   }
 
   return (
-    <div className="bio-container">
+    <div className="bio_container">
       <div className="bio">
           {/* <Feed /> */}
           <h3>
@@ -59,20 +48,18 @@ function Feed() {
           <div>
 
         <FlipMove>
-            {posts.map((post: post) => {
-              return <div className="containerChat">
-                  <div className="display">
-                    <img className="avatar" src={post.avatar}></img>
-                    <p className="displayName"><strong>{post.displayName}</strong></p>
-                  </div>
-                  <p className="textMessage">{post.text}</p>
-                  {user?.id == post.userID ? <button className="btnDelete" onClick={()=> {deletePost(post.id)}}>Delete</button> : null}
-              </div>
+            {posts.map((post: post, index) => {
+              return <div className="containerChat" key={index+1}>
+                        <div className="display">
+                          <img className="avatar" src={post.avatar}></img>
+                          <p className="displayName"><strong>{post.displayName}</strong></p>
+                        </div>
+                        <p className="textMessage">{post.text}</p>
+                        {user?.id == post.userID ? <button className="btnDelete" onClick={()=> {deletePost(post.id)}}>Delete</button> : null}
+                     </div>
             })
             }
-           
-         </FlipMove>
-
+        </FlipMove>
 
           </div>
       </div>
@@ -82,4 +69,3 @@ function Feed() {
 }
 
 export default Feed;
-

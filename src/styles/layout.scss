@@ -220,7 +220,7 @@ article {
   max-width: 800px;
   margin: 4rem auto;
 
-  .bio-container {
+  .bio_container {
     display: flex;
     justify-content: space-around;
     border: $border-primary;
@@ -459,7 +459,7 @@ article {
   }
 
   article {
-    .bio-container {
+    .bio_container {
       flex-direction: column;
       justify-content: stretch;
     }
