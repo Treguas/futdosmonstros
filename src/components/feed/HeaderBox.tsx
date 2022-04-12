@@ -1,51 +1,73 @@
-import { useState } from "react";
-import "./HeaderBox.scss";
+import { useState, useContext, useEffect } from 'react';
+import './HeaderBox.scss';
 import { firestore } from '../../services/firebase';
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
-import toast from "react-hot-toast";
+import { AuthContext } from '../../contexts/AuthContext';
+import { useToast } from '@chakra-ui/react';
+
+export function HeaderBox() {
+  const [TextMessage, setTextMessage] = useState('');
+  const { user } = useContext(AuthContext);
+  const toast = useToast();
 
 
-export const HeaderBox = () => {
-  const [TextMessage, setTextMessage] = useState("");
-  const { user, signInWithGoogle } = useContext(AuthContext);
+  const [posts, setPosts] = useState([]);
+  const [keyCount, setKeyCount] = useState([]);
 
-  // console.log(user)
+  let count = keyCount.map((res: any) => { return res.count })
+
+  console.log(count[0] + 1)
+  console.log(count[0])
+
+  useEffect(() => {
+    firestore.collection('posts').onSnapshot((snapshot: any) =>
+      setPosts(snapshot.docs.map((doc: any) => doc.data())));
+
+    firestore.collection('keyCount').onSnapshot((snapshot: any) =>
+      setKeyCount(snapshot.docs.map((doc: any) => doc.data())));
+
+
+  }, []);
+
   const date = new Date();
   const dateReturned = date.toLocaleDateString(
     'pt-br',
     {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric'
-  });
-  
-  const sendText = (e:any) => {
+      year: 'numeric',
+    },
+  );
+
+  function updateDataCount(count: any) {
+    firestore.doc('/keyCount/lYa0ZZc2sRrf1UPrO681').update({ count });
+  }
+
+  function sendText(e: any) {
     e.preventDefault();
 
-    if (TextMessage != '')
-    {
-      firestore.collection("posts").add({
+    if (TextMessage !== '') {
+      firestore.collection('posts').add({
         displayName: user?.name,
         userID: user?.id,
         text: TextMessage,
         avatar: user?.avatar,
-        dateReturned: dateReturned
+        keyCount: count[0] + 1,
+        dateReturned,
       }).then((docRef) => {
         firestore.doc(`posts/${docRef.id}`).update({ id: docRef.id });
+        updateDataCount(count[0] + 1);
       });
-    } else
-    {
-      toast.error("This didn't work.");
-      console.log("This didn't work.");
+    } else {
+      toast({
+        description: 'Digite sua Mensagem',
+        status: 'error',
+        position: 'top',
+        duration: 1000,
+        isClosable: true,
+      });
     }
-
-    setTextMessage("");
-  };
-
-
-
-
+    setTextMessage('');
+  }
 
   return (
     <div className="headerBox">
@@ -56,7 +78,7 @@ export const HeaderBox = () => {
             onChange={(e) => setTextMessage(e.target.value)}
             value={TextMessage}
             placeholder="Qual a boa?"
-            
+
           />
         </div>
         <button
