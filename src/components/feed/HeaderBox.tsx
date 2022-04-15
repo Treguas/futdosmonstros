@@ -9,14 +9,10 @@ export function HeaderBox() {
   const { user } = useContext(AuthContext);
   const toast = useToast();
 
-
   const [posts, setPosts] = useState([]);
   const [keyCount, setKeyCount] = useState([]);
 
-  let count = keyCount.map((res: any) => { return res.count })
-
-  console.log(count[0] + 1)
-  console.log(count[0])
+  let count = keyCount.map((res: any) => { return res.count });
 
   useEffect(() => {
     firestore.collection('posts').onSnapshot((snapshot: any) =>
@@ -24,7 +20,6 @@ export function HeaderBox() {
 
     firestore.collection('keyCount').onSnapshot((snapshot: any) =>
       setKeyCount(snapshot.docs.map((doc: any) => doc.data())));
-
 
   }, []);
 
