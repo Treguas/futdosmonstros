@@ -57,7 +57,7 @@ export function HeaderBox() {
         description: 'Digite sua Mensagem',
         status: 'error',
         position: 'top',
-        duration: 1000,
+        duration: 2000,
         isClosable: true,
       });
     }

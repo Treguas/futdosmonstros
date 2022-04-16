@@ -11,7 +11,6 @@ function Feed() {
   const [posts, setPosts] = useState([]);
   const { user, signInWithGoogle } = useContext(AuthContext);
 
-
   useEffect(() => {
     firestore.collection('posts').orderBy('keyCount').onSnapshot((snapshot: any) =>
       setPosts(snapshot.docs.map((doc: any) => doc.data()).reverse()));
@@ -47,7 +46,7 @@ function Feed() {
 
           <FlipMove>
             {posts.map((post: post, i) => {
-              return <div className="containerChat" >
+              return <div className="containerChat" key={post.id}>
                 <div className="display">
                   <img className="avatar" src={post.avatar}></img>
                   <p className="displayName"><strong>{post.displayName}</strong></p>

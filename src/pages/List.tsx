@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { Menu } from "../components/menu/Menu";
 import { firestore } from '../services/firebase';
 import { AuthContext } from "../contexts/AuthContext";
@@ -16,43 +16,74 @@ import {
 import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
-
-
 import { GiBabyfootPlayers } from 'react-icons/gi';
+
 
 export const List = () => {
     const { user, signInWithGoogle } = useContext(AuthContext);
     const [list, getListOfPlayers] = useState([]);
     const toast = useToast();
+    const [isNameOnList, getIsNameOnList] = useState(Boolean)
+
 
     useEffect(() => {
         firestore.collection('listPresence').onSnapshot((snapshot: any) =>
             getListOfPlayers(snapshot.docs.map((doc: any) => doc.data()).reverse()));
+
     }, []);
 
-    let teste = window.location.pathname
-    let ts = teste.split("/")[1]
-    console.log(list)
+    useLayoutEffect(() => {
+        nameOnList();
+    }, [list]);
+
+
+
+    function nameOnList(): any {
+        list.forEach((element: listPresence) => {
+            if (element.userID === user?.id) {
+                getIsNameOnList(true)
+            }
+        });
+    }
+
 
     async function putNameOnList() {
-        const addPlayer = await firestore.collection('listPresence').add({
-            displayName: user?.name,
-            userID: user?.id,
-            avatar: user?.avatar,
-        }).then((docRef) => {
-            firestore.doc(`listPresence/${docRef.id}`).update({ id: docRef.id });
-        });
+        if (isNameOnList) {
+            toast({
+                description: 'Nome já esta na Lista',
+                status: 'error',
+                position: 'top',
+                duration: 2000,
+                isClosable: true,
+            });
+        } else {
+            const addPlayer = await firestore.collection('listPresence').add({
+                displayName: user?.name,
+                userID: user?.id,
+                avatar: user?.avatar,
+            }).then((docRef) => {
+                firestore.doc(`listPresence/${docRef.id}`).update({ id: docRef.id });
+            });
 
-        toast({
-            description: 'Presença confirmada',
-            status: 'success',
-            position: 'top',
-            duration: 2000,
-            isClosable: true,
-        });
+            toast({
+                description: 'Presença confirmada',
+                status: 'success',
+                position: 'top',
+                duration: 2000,
+                isClosable: true,
+            });
+        }
+    }
+
+    function deletePost(id: string) {
+        firestore.doc(`listPresence/${id}`).delete();
+        getIsNameOnList(false)
 
     }
+
     type listPresence = {
+        userID: string,
+        id: string,
         avatar: string,
         displayName: string,
         position: string
@@ -81,6 +112,7 @@ export const List = () => {
                                     </Td>
                                     <Td>{players?.displayName}</Td>
                                     <Td>{players?.position}</Td>
+                                    {user?.id === players.userID ? <button className="btnDelete" onClick={() => { deletePost(players.id); }}>Delete</button> : null}
                                 </Tr>
 
                             })
