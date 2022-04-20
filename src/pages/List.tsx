@@ -12,31 +12,37 @@ import {
     Td,
     TableCaption,
     TableContainer,
+    Stack,
 } from '@chakra-ui/react';
 import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { GiBabyfootPlayers } from 'react-icons/gi';
+import { Radio, RadioGroup } from '@chakra-ui/react'
 
 
 export const List = () => {
     const { user, signInWithGoogle } = useContext(AuthContext);
     const [list, getListOfPlayers] = useState([]);
     const toast = useToast();
-    const [isNameOnList, getIsNameOnList] = useState(Boolean)
-
+    const [isNameOnList, getIsNameOnList] = useState(Boolean);
+    //Posição que o jogador vai jogar na Lista
+    const [valuePlayer, setValuePlayer] = useState('Linha');
+    const [goalKeeper, setGoalKeeper] = useState<number>();
+    const [players, setplayers] = useState<number>();
 
     useEffect(() => {
         firestore.collection('listPresence').onSnapshot((snapshot: any) =>
-            getListOfPlayers(snapshot.docs.map((doc: any) => doc.data()).reverse()));
+            getListOfPlayers(snapshot.docs.map((doc: any) => doc.data()).reverse())
+        );
 
     }, []);
 
     useLayoutEffect(() => {
         nameOnList();
-    }, [list]);
+        verifyPlayersPosition();
 
-
+    }, [list, goalKeeper]);
 
     function nameOnList(): any {
         list.forEach((element: listPresence) => {
@@ -45,6 +51,25 @@ export const List = () => {
             }
         });
     }
+
+    let teste
+
+    function verifyPlayersPosition() {
+        const goalKeeper = list.filter((element: any) => {
+            if (element.position === 'Goleiro')
+                return element.position
+        });
+        const players = list.filter((element: any) => {
+            if (element.position === 'Linha')
+                return element.position
+        });
+
+        setGoalKeeper(goalKeeper.length);
+        setplayers(players.length);
+
+
+    }
+
 
 
     async function putNameOnList() {
@@ -61,6 +86,7 @@ export const List = () => {
                 displayName: user?.name,
                 userID: user?.id,
                 avatar: user?.avatar,
+                position: valuePlayer,
             }).then((docRef) => {
                 firestore.doc(`listPresence/${docRef.id}`).update({ id: docRef.id });
             });
@@ -77,8 +103,7 @@ export const List = () => {
 
     function deletePost(id: string) {
         firestore.doc(`listPresence/${id}`).delete();
-        getIsNameOnList(false)
-
+        getIsNameOnList(false);
     }
 
     type listPresence = {
@@ -88,16 +113,15 @@ export const List = () => {
         displayName: string,
         position: string
     }
-    return (
 
+    return (
         <>
             <TableContainer>
                 <Table variant='striped' colorScheme='teal'>
-                    <TableCaption>Lista de jogadores confirmados <strong>03 Jogadores</strong></TableCaption>
+                    <TableCaption>Lista de jogadores confirmados: <strong>{list.length === 1 ? '1 Jogador' : `${list.length} Jogadores`}</strong></TableCaption>
                     <Thead>
                         <Tr>
                             <Th>
-
                             </Th>
                             <Th>Jogador</Th>
                             <Th>Posição</Th>
@@ -111,10 +135,12 @@ export const List = () => {
                                         <Avatar name={players?.displayName} src={players?.avatar} />
                                     </Td>
                                     <Td>{players?.displayName}</Td>
-                                    <Td>{players?.position}</Td>
-                                    {user?.id === players.userID ? <button className="btnDelete" onClick={() => { deletePost(players.id); }}>Delete</button> : null}
+                                    <Td>{players?.position}
+                                    </Td>
+                                    <Td>
+                                        {user?.id === players.userID ? <Button colorScheme='pink' size='xs' onClick={() => { deletePost(players.id); }}>Delete</Button> : null}
+                                    </Td>
                                 </Tr>
-
                             })
                         }
                     </Tbody>
@@ -124,11 +150,17 @@ export const List = () => {
                             <Th>
 
                             </Th>
-                            <Th> 02 Linhas | 01 Goleiro</Th>
+                            <Th>Linha: {players} | Goleiro: {goalKeeper} </Th>
                         </Tr>
                     </Tfoot>
                 </Table>
             </TableContainer>
+            <RadioGroup style={{ marginBottom: 14 }} onChange={setValuePlayer} value={valuePlayer}>
+                <Stack direction='row'>
+                    <Radio value='Goleiro' colorScheme='orange'>Goleiro</Radio>
+                    <Radio value='Linha' colorScheme='green' defaultChecked>Linha</Radio>
+                </Stack>
+            </RadioGroup>
             <Button colorScheme='twitter' leftIcon={<GiBabyfootPlayers />} onClick={putNameOnList}>
                 Confirmar Presença
             </Button>
