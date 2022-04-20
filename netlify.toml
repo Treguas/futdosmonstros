@@ -2,3 +2,12 @@
 base = "."
 command = "npm run build"
 publish = "./build/"
+
+[build.environment]
+REACT_APP_API_KEY="AIzaSyCrAtzqwODQ6j84tSXXJYBCnMrlnqMh1YY"
+REACT_APP_AUTH_DOMAIN="futdosmonstros-9216b.firebaseapp.com"
+REACT_APP_PROJECTID="futdosmonstros-9216b"
+REACT_APP_STORAGE_BUCKET="futdosmonstros-9216b.appspot.com"
+REACT_APP_MESSAGING_SENDER_ID="15565956375"
+REACT_APP_APP_ID="1:15565956375:web:6043c7c07df38dd8c9c352"
+REACT_APP_MEASUREMENT_ID="G-EQMG2DXTE9"
