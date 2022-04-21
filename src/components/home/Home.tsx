@@ -113,7 +113,7 @@ export const Home = () => {
                 </div>
             </main>
             {menuMobile == true ?
-                <div id="myModal" className="modal">
+                <div className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={switchMenu}>&times;</span>
                         <a onClick={(e) => { hideComponent(e) }}>
