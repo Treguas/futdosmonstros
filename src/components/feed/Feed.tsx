@@ -6,6 +6,9 @@ import FlipMove from 'react-flip-move';
 import './Feed.scss';
 import { firestore } from '../../services/firebase';
 import { AuthContext } from '../../contexts/AuthContext';
+import { DeleteIcon } from '@chakra-ui/icons'
+import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons';
+
 
 function Feed() {
   const [posts, setPosts] = useState([]);
@@ -53,6 +56,7 @@ function Feed() {
                 </div>
                 <p className="textMessage">{post.text}</p>
                 {user?.id === post.userID ? <button className="btnDelete" onClick={() => { deletePost(post.id); }}>Delete</button> : null}
+
               </div>
             })}
           </FlipMove>

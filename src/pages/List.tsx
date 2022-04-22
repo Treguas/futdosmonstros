@@ -13,12 +13,14 @@ import {
     TableCaption,
     TableContainer,
     Stack,
+    color,
 } from '@chakra-ui/react';
 import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { GiBabyfootPlayers } from 'react-icons/gi';
-import { Radio, RadioGroup } from '@chakra-ui/react'
+import { Radio, RadioGroup } from '@chakra-ui/react';
+import { DeleteIcon } from '@chakra-ui/icons'
 
 
 export const List = () => {
@@ -114,6 +116,10 @@ export const List = () => {
         position: string
     }
 
+    const btnDelete = {
+        cursor: 'pointer',
+    };
+
     return (
         <>
             <TableContainer>
@@ -138,7 +144,7 @@ export const List = () => {
                                     <Td>{players?.position}
                                     </Td>
                                     <Td>
-                                        {user?.id === players.userID ? <Button colorScheme='pink' size='xs' onClick={() => { deletePost(players.id); }}>Delete</Button> : null}
+                                        {user?.id === players.userID ? <DeleteIcon style={btnDelete} boxSize="1.4rem" color="#dc3545" onClick={() => { deletePost(players.id); }} /> : null}
                                     </Td>
                                 </Tr>
                             })

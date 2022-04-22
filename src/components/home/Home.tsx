@@ -8,6 +8,7 @@ import Feed from "../feed/Feed";
 import '../../styles/layout.scss';
 import { List } from "../../pages/List";
 import { GiCyborgFace, GiExitDoor, GiSwitchWeapon } from "react-icons/gi";
+import { CloseButton } from '@chakra-ui/react';
 
 
 
@@ -115,7 +116,7 @@ export const Home = () => {
             {menuMobile == true ?
                 <div className="modal">
                     <div className="modal-content">
-                        <span className="close" onClick={switchMenu}>&times;</span>
+                        <span className="close" onClick={switchMenu}><CloseButton size='lg' /></span>
                         <a onClick={(e) => { hideComponent(e) }}>
                             Feed
                         </a>
