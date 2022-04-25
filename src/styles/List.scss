@@ -3,17 +3,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 0.8rem;
 }
 
 .cadastrar-jogador {
     margin-left: 1.4rem!important;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 1025px) {
     .btn-cadastrar {
-        
+        margin-bottom: 0.8rem;
+    }
+}
+
+@media (max-width: 770px) {
+    .btn-cadastrar {        
         flex-direction: column;
         width: 12.4rem!important;
+        margin-bottom: 0.8rem;
     }
 
     .cadastrar-jogador {

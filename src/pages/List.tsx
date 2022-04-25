@@ -206,7 +206,7 @@ export const List = () => {
                     </Tfoot>
                 </Table>
             </TableContainer>
-            <RadioGroup style={{ marginBottom: 14 }} onChange={setValuePlayer} value={valuePlayer}>
+            <RadioGroup style={{ marginBottom: 14, marginTop: 14 }} onChange={setValuePlayer} value={valuePlayer}>
                 <Stack direction='row'>
                     <Radio value='Goleiro' colorScheme='orange'>Goleiro</Radio>
                     <Radio value='Linha' colorScheme='green' defaultChecked>Linha</Radio>

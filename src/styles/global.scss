@@ -1,3 +1,9 @@
+::-webkit-scrollbar               {width: 8px; height: 8px;}
+::-webkit-scrollbar-track         {background: #c2c6db4f !important; border-radius: 20px;}
+::-webkit-scrollbar-thumb         {background: linear-gradient(45deg, #3dbefa72, #01a2be); border-radius: 20px;}
+::-webkit-scrollbar-thumb:hover   {background: #3f51b5 !important}
+::-webkit-scrollbar-thumb:active  {background: #3dbefa  !important}
+
 :root {
   /* CSS variables */
   --primary: #007bff;
