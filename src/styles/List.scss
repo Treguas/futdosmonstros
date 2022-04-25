@@ -8,3 +8,17 @@
 .cadastrar-jogador {
     margin-left: 1.4rem!important;
 }
+
+@media (max-width: 770px) {
+    .btn-cadastrar {
+        
+        flex-direction: column;
+        width: 12.4rem!important;
+    }
+
+    .cadastrar-jogador {
+        margin-top: 1.4rem!important;
+        width: 12.4rem!important;
+        margin-left: 0!important;
+    }
+}
