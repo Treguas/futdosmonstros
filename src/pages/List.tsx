@@ -1,7 +1,22 @@
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
-import { Menu } from "../components/menu/Menu";
+import { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import "../styles/List.scss";
 import { firestore } from '../services/firebase';
 import { AuthContext } from "../contexts/AuthContext";
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure,
+    FormControl,
+    FormLabel,
+    Input,
+    background,
+    TagLeftIcon,
+} from '@chakra-ui/react'
 import {
     Table,
     Thead,
@@ -33,6 +48,12 @@ export const List = () => {
     const [goalKeeper, setGoalKeeper] = useState<number>();
     const [players, setplayers] = useState<number>();
 
+    //Modal
+    const [nameAvulso, setNameAvulso] = useState('');
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const initialRef = useRef()
+    const finalRef = useRef()
+
     useEffect(() => {
         firestore.collection('listPresence').onSnapshot((snapshot: any) =>
             getListOfPlayers(snapshot.docs.map((doc: any) => doc.data()).reverse())
@@ -54,8 +75,6 @@ export const List = () => {
         });
     }
 
-    let teste
-
     function verifyPlayersPosition() {
         const goalKeeper = list.filter((element: any) => {
             if (element.position === 'Goleiro')
@@ -68,7 +87,6 @@ export const List = () => {
 
         setGoalKeeper(goalKeeper.length);
         setplayers(players.length);
-
 
     }
 
@@ -101,6 +119,33 @@ export const List = () => {
                 isClosable: true,
             });
         }
+    }
+
+    async function putAvulsoOnList() {
+
+        if (nameAvulso) {
+            const addPlayer = await firestore.collection('listPresence').add({
+                displayName: nameAvulso,
+                userID: user?.id,
+                avatar: 'https://bit.ly/broken-link',
+                position: valuePlayer,
+            }).then((docRef) => {
+                firestore.doc(`listPresence/${docRef.id}`).update({ id: docRef.id });
+            });
+
+            toast({
+                description: 'Presença confirmada',
+                status: 'success',
+                position: 'top',
+                duration: 2000,
+                isClosable: true,
+            });
+
+            onClose();
+            setNameAvulso('')
+        }
+
+
     }
 
     function deletePost(id: string) {
@@ -167,9 +212,37 @@ export const List = () => {
                     <Radio value='Linha' colorScheme='green' defaultChecked>Linha</Radio>
                 </Stack>
             </RadioGroup>
-            <Button colorScheme='twitter' leftIcon={<GiBabyfootPlayers />} onClick={putNameOnList}>
-                Confirmar Presença
-            </Button>
+            <div className="btn-cadastrar">
+                <Button colorScheme='twitter' leftIcon={<GiBabyfootPlayers />} onClick={putNameOnList}>
+                    Confirmar Presença
+                </Button>
+                <Button className="cadastrar-jogador" colorScheme='facebook' leftIcon={<GiBabyfootPlayers />} onClick={onOpen}>Confirmar Avulso</Button>
+            </div>
+            <Modal
+                isOpen={isOpen}
+                onClose={onClose}
+
+
+            >
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Cadastrar Avulso</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody pb={6}>
+                        <FormControl>
+                            <FormLabel>Nome</FormLabel>
+                            <Input placeholder='Nome do Avulso' onChange={(e) => { setNameAvulso(e.target.value) }} />
+                        </FormControl>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button colorScheme='green' mr={3} onClick={putAvulsoOnList}>
+                            Salvar
+                        </Button>
+                        <Button onClick={onClose}>Cancel</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
         </>
     )
 }

@@ -9,6 +9,7 @@ import '../../styles/layout.scss';
 import { List } from "../../pages/List";
 import { GiCyborgFace, GiExitDoor, GiSwitchWeapon } from "react-icons/gi";
 import { CloseButton } from '@chakra-ui/react';
+import logoImg from '../../assets/images/fdm-removebg-preview.png';
 
 
 
@@ -49,7 +50,8 @@ export const Home = () => {
 
                         <h1 id="logo" className="invisible">
                             <a>
-                                FutDosMonstros
+                                {/* FutDosMonstros */}
+                                <img src={logoImg} alt="Logo fut dos Monstros" />
                             </a>
                         </h1>
 
