@@ -213,7 +213,7 @@ export const List = () => {
                 </Stack>
             </RadioGroup>
             <div className="btn-cadastrar">
-                <Button colorScheme='twitter' leftIcon={<GiBabyfootPlayers />} onClick={putNameOnList}>
+                <Button className="cadastrar-jogador" colorScheme='twitter' leftIcon={<GiBabyfootPlayers />} onClick={putNameOnList}>
                     Confirmar Presença
                 </Button>
                 <Button className="cadastrar-jogador" colorScheme='facebook' leftIcon={<GiBabyfootPlayers />} onClick={onOpen}>Confirmar Avulso</Button>
